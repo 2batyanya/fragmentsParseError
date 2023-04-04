@@ -10,7 +10,8 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.imageFragmentContainer, ImageFragment())
+            .add(R.id.imageFragmentContainer1, ImageFragment())
+            .add(R.id.imageFragmentContainer2, ImageFragment())
             .commit()
     }
 }
