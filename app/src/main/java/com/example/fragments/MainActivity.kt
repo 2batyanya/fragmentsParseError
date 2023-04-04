@@ -26,15 +26,24 @@ class MainActivity : AppCompatActivity() {
 
         val fragment2 = ImageFragment.newInstance(desert_images)
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.imageFragmentContainer1, fragment1)
-            .add(R.id.imageFragmentContainer2, fragment2)
-            .commit()
+        if(savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.imageFragmentContainer1, fragment1)
+                .add(R.id.imageFragmentContainer2, fragment2)
+                .addToBackStack(null)
+                .setReorderingAllowed(true)
+                .commit()
+        }
 
         findViewById<Button>(R.id.changeButton).setOnClickListener {
-            fragment1.changeImage()
-            fragment2.changeImage()
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.imageFragmentContainer1, ImageFragment.newInstance(dessert_images))
+                .add(R.id.imageFragmentContainer2, ImageFragment.newInstance(desert_images))
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit()
         }
     }
 }
